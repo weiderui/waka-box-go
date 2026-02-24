@@ -3,60 +3,60 @@
 
 ---
 
-English | [简体中文](./README_zh.md)
+[English](./README.md) | 简体中文
 
-> 📌✨ For more pinned-gist projects like this one, check out: https://github.com/matchai/awesome-pinned-gists
+> 📌✨ 查看更多像这样的 Pinned Gist 项目,传送门: https://github.com/matchai/awesome-pinned-gists
 
-## 💻 Setup
+## 💻 安装
 
-### 🎒 Prep work
+### 🎒 前置工作
 
-> if only want's to update a markdown,like profile README,skip step 1 and step 2.
+> 如果只想更新某个 markdown 文件，比如 profile README,可以跳过 1,2 两步
 
-1. Create a new public GitHub Gist with name `📊 Weekly development breakdown` (https://gist.github.com/)
-1. Create a token with the `gist` scope and copy it. (https://github.com/settings/tokens/new)
-1. Create a WakaTime account (https://wakatime.com/signup)
-1. In your WakaTime profile settings (https://wakatime.com/settings/profile) ensure `Display coding activity publicly` and `Display languages, editors, operating systems publicly` are checked.
-1. In your account settings, copy the existing WakaTime API Key (https://wakatime.com/settings/api-key)
-1. For updating a markdown file，add comments to the place where you want to update in the markdown file.
+1. 创建一个公开的 GitHub Gist,文件名为`📊 Weekly development breakdown` (https://gist.github.com/)
+1. 创建一个拥有 `gist` 权限的 token 并复制. (https://github.com/settings/tokens/new)
+1. 创建一个 WakaTime 账号(如果已经有了可以跳过),配置好编辑器插件使用一段时间，建议 WakaTime 后台有数据了再进入下一步。 (https://wakatime.com/signup)
+1. 在 WakaTime 的 profile settings (https://wakatime.com/settings/profile) 确保 `Display coding activity publicly` 和 `Display languages, editors, operating systems publicly` 被勾选了
+1. 在你的 WakaTime 的 account settings, 复制 WakaTime API Key (https://wakatime.com/settings/api-key)
+1. 如果需要更新到某个 markdown 文件，请在对应文件需要更新的地方添加以下注释
+
    ```markdown
     <!-- waka-box start -->
     <!-- waka-box end -->
    ```
+### 🚀 开始安装
 
-### 🚀 Project setup
+1. Fork 这个仓库
 
-1. Fork this repo
-   
 
-2. Edit the [environment variable](https://github.com/YouEclipse/waka-box-go/actions/runs/126970182/workflow#L17-L19) in `.github/workflows/schedule.yml`:
+2. 编辑 `.github/workflows/schedule.yml` 中的[环境变量](https://github.com/YouEclipse/waka-box-go/actions/runs/126970182/workflow#L17-L19) :
 
-   > For updating github profile README,you can follow [waka-box.yml](https://github.com/YouEclipse/YouEclipse/blob/master/.github/workflows/waka-box.yml) in [YouEclipse](https://github.com/YouEclipse/YouEclipse) to create a Action in your README repo.Remember it's unsafe to use token with **`repo`** scope for updating the repo, waka-box update the profile repo using git command in Github Action instead of using github API.
-   
-   > DO NOT CHANGE THE WAKATIME_API_KEY or GH_TOKEN VALUES IN THIS FILE, USE THE REPO SECRETS SET BELOW. FAILURE TO DO THIS WILL MAKE YOUR WAKATIME API KEY PUBLIC AND CAN POTENTIALLY EXPOSE SENSITIVE INFORMATION.
+   > 如果是需要更新 github profile README,可以在 profile README 的仓库中创建 Action，具体配置参考 我的 [YouEclipse](https://github.com/YouEclipse/YouEclipse) 中的 [waka-box.yml](https://github.com/YouEclipse/YouEclipse/blob/master/.github/workflows/waka-box.yml).因为使用 **`repo`** 权限的token 来通过 API 更新仓库，可能会不安全，所以我的示例中使用 git 命令来更新，这样更加安全。
 
-   - **UPDATE_OPTION:** Default is `GIST`.For only update a markdown file ,set to`MARKDOWN`,and ignore environment variables with prefix **GIST\_** below.Set to `GIST_AND_MARKDOWN` updates both the gist and the markdown file.
-   - **MARKDOWN_FILE:** The filename for the markdown file.
+   > 不要修改此文件中的 WAKATIME_API_KEY 和 GH_TOKEN VALUES, 使用下方设置的的 Secret.否则你的 WAKATIME API KEY 会变成公开的，导致泄露一些敏感信息。
 
-   - **GIST_ID:** The ID portion from your gist url: `https://gist.github.com/YouEclipse/`**`9bc7025496e478f439b9cd43eba989a4`**.
 
-     **the following are optional, thanks [@AarynSmith](https://github.com/AarynSmith) for PR([#11](https://github.com/YouEclipse/waka-box-go/pull/11))**
+   - **UPDATE_OPTION:** 默认是 `GIST`,如果只想更新到某个 markdown 文件，设置为`MARKDOWN`,并可以忽略以下以 **GIST\_** 开头的环境变量，如果想同时更新 gist 和 markdown,设置为`GIST_AND_MARKDOWN`
+   - **MARKDOWN_FILE:** 如果是更新到某个 markdown 文件，填写 markdown 文件名(包含相对路径或者绝对路径)
+   - **GIST_ID:** ID 是 gist url 的后缀 : `https://gist.github.com/YouEclipse/`**`9bc7025496e478f439b9cd43eba989a4`**.
 
-   - **GIST_BARSTYLE:** Background of the progress bar. Default is "SOLIDLT" other options include "SOLIDMD", "SOLIDDK" for medium and dark backgrounds, "EMPTY" for blank background, and "UNDERSCORE" for a line along the bottom.
-   - **GIST_BARLENGTH:** Length of the progress bar. Default is 21. Set to -1 to auto size the bar.
-   - **GIST_TIMESTYLE** Abbreviate the time text. Default is "LONG" ( "# hrs # mins" ). "SHORT" updates the text to "#h#m".
+     **以下为可选参数,感谢[@AarynSmith](https://github.com/AarynSmith)的 PR([#11](https://github.com/YouEclipse/waka-box-go/pull/11))**
 
-3. Go to the repo **Settings > Secrets**
-4. Add the following environment variables:
-   - **GH_TOKEN:** The GitHub token generated above.
-   - **WAKATIME_API_KEY:** The API key for your WakaTime account.
+   - **GIST_BARSTYLE:** 进度条的背景样式. 默认是 "SOLIDLT"，其他样式包括 "SOLIDMD", "SOLIDDK" (黑色), "EMPTY" (空白) 和 "UNDERSCORE"（下划线）.
+   - **GIST_BARLENGTH:** 条形图的长度. 默认 21. 设置为 -1 可以自动适配.
+   - **GIST_TIMESTYLE:** 时间文本的样式. 默认是 "LONG" ( "# hrs # mins" ). "SHORT" 则是 "#h#m".
 
-## 🕵️ How it works
+3. 前往 fork 后的仓库的 **Settings > Secrets**
+4. 添加以下环境变量:
+   - **GH_TOKEN:** 前置工作中生成的 github token.
+   - **WAKATIME_API_KEY:** WakaTime 的 API key.
 
-- Get stats from WakaTime API
-- Update Gist with Github API
-- Use Github Actions for updating Gist
+## 🕵️ 工作原理
 
-## 📄 License
+- 基于 WakaTime API 获取统计数据
+- 基于 Github API 获取/更新 Gist
+- 使用 Github Actions 定时更新 Gist
 
-This project is licensed under [Apache-2.0](./LICENSE)
+## 📄 开源协议
+
+本项目使用 [Apache-2.0](./LICENSE) 协议
