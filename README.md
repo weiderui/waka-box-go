@@ -1,14 +1,5 @@
-#
-
-<p align="center">
-  <img width="400" src="https://user-images.githubusercontent.com/8252317/83985147-9afb2800-a96a-11ea-9841-eec3a1f61d75.png">
-  <h3 align="center">waka-box-go</h3>
-  <p align="center">📊 Update  pinned gist / profile README  to contain your weekly WakaTime stats. </p>
-  <p align="center">  A Golang implementation, see the original version  <a href="https://github.com/matchai/waka-box">waka-box</a>
-   <p align="center">
-    <a href="https://github.com/YouEclipse/waka-box-go/workflows/Update%20gist%20with%20WakaTime%20stats/badge.svg?branch=master"><img src="https://github.com/YouEclipse/waka-box-go/workflows/Update%20gist%20with%20WakaTime%20stats/badge.svg?branch=master" alt="Update gist with WakaTime stats"></a>
-  </p>
-</p>
+<!-- waka-box start -->
+ <!-- waka-box end -->
 
 ---
 
